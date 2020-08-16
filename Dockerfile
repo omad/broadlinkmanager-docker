@@ -1,13 +1,11 @@
-FROM ubuntu:18.04
+#FROM python:3
+FROM python:3-alpine
 
-LABEL maintainer="tomer.klein@gmail.com"
 
 ENV PYTHONIOENCODING=utf-8
 
-#install pip3
-RUN apt update
-
-RUN apt install python3-pip libffi-dev libssl-dev --yes
+#RUN apt update && apt install python3-pip libffi-dev libssl-dev --yes
+RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev
 
 RUN  pip3 install flask flask_restful cryptography==2.6.1  --no-cache-dir
 
@@ -19,4 +17,4 @@ EXPOSE 7020
 
 COPY broadlinkmanager /opt/broadlinkmanager
 
-ENTRYPOINT ["/usr/bin/python3", "/opt/broadlinkmanager/broadlinkmanager.py"]
+ENTRYPOINT ["/usr/local/bin/python3", "/opt/broadlinkmanager/broadlinkmanager.py"]
