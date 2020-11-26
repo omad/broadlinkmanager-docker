@@ -4,10 +4,11 @@ FROM python:3-alpine
 
 ENV PYTHONIOENCODING=utf-8
 
-#RUN apt update && apt install python3-pip libffi-dev libssl-dev --yes
-RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev
+RUN apk add gcc musl-dev python3-dev fping libffi-dev openssl-dev
 
-RUN  pip3 install flask flask_restful cryptography==2.6.1  --no-cache-dir
+RUN  pip3 install flask flask_restful loguru cryptography==2.6.1  --no-cache-dir
+
+#RUN apt install python3-pip libffi-dev fping libssl-dev --yes
 
 #Create working directory
 RUN mkdir /opt/broadlinkmanager
